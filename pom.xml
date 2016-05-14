@@ -8,7 +8,7 @@
     <version>0.0.1</version>
     <name>Random number generators</name>
     <description>Implementation of several (pseudo) random number generators which have better characteristics then Java's built in generator</description>
-    <url></url>
+    <url>https://github.com/TheJavaGuy/rng</url>
     <licenses>
         <license>
             <name>GNU GENERAL PUBLIC LICENSE Version 3</name>
@@ -20,13 +20,13 @@
             <name>Ivan Milosavljević</name>
             <email>TheJavaGuy@yandex.com</email>
             <organization>TheJavaGuy</organization>
-            <organizationUrl>http://thejavaguy.org/</organizationUrl>
+            <organizationUrl>http://thejavaguy.org</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <connection></connection>
-        <developerConnection></developerConnection>
-        <url></url>
+        <connection>scm:git:git@github.com:TheJavaGuy/rng.git</connection>
+        <developerConnection>scm:git:git@github.com:TheJavaGuy/rng.git</developerConnection>
+        <url>git@github.com:TheJavaGuy/rng.git</url>
     </scm>
 
     <prerequisites>
