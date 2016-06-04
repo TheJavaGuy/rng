@@ -7,4 +7,5 @@ release:
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     ls -alF /home/r
+    cat /home/r/settings.xml
     mvn -X clean deploy --settings /home/r/settings.xml
