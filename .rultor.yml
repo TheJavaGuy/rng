@@ -1,7 +1,7 @@
 decrypt:
-  settings.xml: "repo/settings.xml.asc"
-  pubring.gpg: "repo/pubring.gpg.asc"
-  secring.gpg: "repo/secring.gpg.asc"
+  settings.xml: "rng/settings.xml.asc"
+  pubring.gpg: "rng/pubring.gpg.asc"
+  secring.gpg: "rng/secring.gpg.asc"
 release:
   script: |
     mvn versions:set "-DnewVersion=${tag}"
