@@ -28,7 +28,7 @@ public class R250_521 implements PRNG {
     public R250_521(long seed) {
         r250_buffer = new int[NUM_ELEMENTS_250];
         r521_buffer = new int[NUM_ELEMENTS_521];
-        Random r = new Random();
+        Random r = new Random(seed);
         int i = NUM_ELEMENTS_521;
         while (i-- > 250) {
             r521_buffer[i] = r.nextInt();
