@@ -1,6 +1,6 @@
 package org.thejavaguy.prng.generators;
 
-public class MersenneTwister implements PRNG {
+public final class MersenneTwister implements PRNG {
     private static final int N = 624;
     private static final int M = 397;
     private static final int INIT_MULTIPLICATOR = 1_812_433_253;
