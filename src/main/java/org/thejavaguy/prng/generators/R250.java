@@ -6,7 +6,7 @@ import java.util.Random;
  * Generator of pseudo-random numbers based on GFSR(250,103) algorithm.
  * @author Ivan Milosavljevic
  */
-public class R250 implements PRNG {
+public final class R250 implements PRNG {
     private static final int NUM_ELEMENTS = 250;
     private final int[] buffer;
     private int index;

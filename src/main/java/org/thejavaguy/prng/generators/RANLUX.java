@@ -1,6 +1,6 @@
 package org.thejavaguy.prng.generators;
 
-public class RANLUX implements PRNG {
+public final class RANLUX implements PRNG {
 
     @Override
     public double nextDouble() {
