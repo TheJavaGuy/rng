@@ -21,9 +21,9 @@ public final class R250_521 implements PRNG {
     }
 
     /**
-     * Konstruise R250_521 generator sa zadatim semenom.
+     * Constructs R250_521 generator with given seed.
      *
-     * @param seed Pocetno seme za generator.
+     * @param seed Starting seed for the generator.
      */
     public R250_521(long seed) {
         r250_buffer = new int[NUM_ELEMENTS_250];
