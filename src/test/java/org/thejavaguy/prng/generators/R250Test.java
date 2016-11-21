@@ -1,27 +1,27 @@
 package org.thejavaguy.prng.generators;
 
 import static org.junit.Assert.*;
-
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class R250Test {
+    private R250 sut;
 
     @Before
     public void setUp() throws Exception {
+        sut = new R250();
     }
 
     @After
     public void tearDown() throws Exception {
+        sut = null;
     }
 
     @Test
     public void nextDouble_IsAlwaysGEQ0andL1() {
-        R250 sut = new R250();
         int reps = 10_000_000;
         for (int i = 0; i < reps; ++i) {
             double actual = sut.nextDouble();
@@ -32,18 +32,19 @@ public class R250Test {
 
     @Test
     public void nextInt_WithUpperLimit_IsAlwaysWithinLimit() {
-        R250 sut = new R250();
         int reps = 10_000_000;
+        Set<Integer> results = new TreeSet<>();
         for (int i = 0; i < reps; ++i) {
             int actual = sut.nextInt(10);
+            results.add(actual);
             assertTrue(actual >= 0);
             assertTrue(actual <= 10);
         }
+        assertEquals(11, results.size());
     }
 
     @Test
     public void nextInt_WithUpperLimit_IsAlwaysWithinLimit2() {
-        R250 sut = new R250();
         int reps = 10_000_000;
         for (int i = 0; i < reps; ++i) {
             int actual = sut.nextInt(1);
@@ -54,7 +55,6 @@ public class R250Test {
 
     @Test
     public void nextInt_WithNegativeLimits_IsAlwaysWithinLimits() {
-        R250 sut = new R250();
         int reps = 10_000_000;
         Set<Integer> results = new TreeSet<>();
         for (int i = 0; i < reps; ++i) {
@@ -68,7 +68,6 @@ public class R250Test {
 
     @Test
     public void nextByte_IsAlwaysWithinLimits() {
-        R250 sut = new R250();
         int reps = 10_000_000;
         Set<Integer> results = new TreeSet<>();
         for (int i = 0; i < reps; ++i) {
@@ -79,5 +78,4 @@ public class R250Test {
         }
         assertEquals(256, results.size());
     }
-
 }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  * Generator of pseudo-random numbers based on GFSR(521,168) algorithm.
- * @author Ivan Milosavljevic
+ * @author Ivan Milosavljevic (TheJavaGuy)
  */
 public final class R250_521 implements PRNG {
     private static final int NUM_ELEMENTS_250 = 250;
@@ -84,14 +84,14 @@ public final class R250_521 implements PRNG {
         if (upperLimit <= 0) {
             throw new IllegalArgumentException("upperLimit must be positive, yet it is " + upperLimit);
         }
-        return (int) Math.floor((upperLimit + 1) * nextDouble());
+        return (int) Math.floor(((double) upperLimit + 1) * nextDouble());
     }
 
     @Override
     public int nextInt(int lowerLimit, int upperLimit) {
-        if (lowerLimit > upperLimit) {
+        if (lowerLimit >= upperLimit) {
             throw new IllegalArgumentException(String.format(
-                    "lowerLimit must be greater than upperLimit, yet values are: lowerLimit = %d, upperLimit = %d",
+                    "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
                     lowerLimit, upperLimit));
         }
         return lowerLimit + nextInt(upperLimit - lowerLimit);

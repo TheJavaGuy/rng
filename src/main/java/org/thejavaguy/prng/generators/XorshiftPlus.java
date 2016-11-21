@@ -3,34 +3,34 @@ package org.thejavaguy.prng.generators;
 import java.util.Random;
 
 /**
- * Generator of pseudo-random numbers based on GFSR(250,103) algorithm.
  * @author Ivan Milosavljevic (TheJavaGuy)
  */
-public final class R250 implements PRNG {
-    private static final int NUM_ELEMENTS = 250;
-    private final int[] buffer;
-    private int index;
+public final class XorshiftPlus implements PRNG {
+    private long[] s;
 
-    public R250() {
+    public XorshiftPlus() {
         this(System.nanoTime());
     }
 
-    public R250(long seed) {
-        buffer = new int[NUM_ELEMENTS];
-        index = 0;
-        Random randomGenerator = new Random(seed);
-        for (int i = 0; i < buffer.length; ++i) {
-            buffer[i] = randomGenerator.nextInt();
+    public XorshiftPlus(long seed) {
+        Random r = new Random(seed);
+        s = new long[2];
+        for (;;) {
+            s[0] = r.nextLong();
+            s[1] = r.nextLong();
+            if (s[0] != 0 || s[1] != 0) {
+                break;
+            }
         }
-        int msb = 0x80000000;
-        int mask = 0xffffffff;
-        for (int j = 0; j < 32; ++j) {
-            int indexOfVector = 7 * j + 3;
-            buffer[indexOfVector] &= mask;
-            buffer[indexOfVector] |= msb;
-            mask >>= 1;
-        msb >>= 1;
-        }
+    }
+
+    private long nextLong() {
+        long x = s[0];
+        long y = s[1];
+        s[0] = y;
+        x ^= x << 23;
+        s[1] = x ^ y ^ (x >>> 17) ^ (y >>> 26);
+        return s[1] + y;
     }
 
     @Override
@@ -40,11 +40,7 @@ public final class R250 implements PRNG {
 
     @Override
     public int nextInt() {
-        int j = (index + 103) % NUM_ELEMENTS;
-        int ret = buffer[index] ^ buffer[j];
-        buffer[index] = ret;
-        index = (index + 1) % NUM_ELEMENTS;
-        return ret;
+        return (int) (nextLong() & 0xffffffff);
     }
 
     @Override
@@ -83,5 +79,15 @@ public final class R250 implements PRNG {
     @Override
     public char nextChar() {
         return (char) nextInt(0, 65535);
+    }
+
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        XorshiftPlus app = new XorshiftPlus();
+        for (int i = 0; i < 10; ++i) {
+            System.out.println(app.nextInt(-1, Integer.MAX_VALUE));
+        }
     }
 }

@@ -7,12 +7,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CMWCTest {
-    private CMWC sut;
+public class XorshiftPlusTest {
+    private XorshiftPlus sut;
 
     @Before
     public void setUp() throws Exception {
-        sut = new CMWC();
+        sut = new XorshiftPlus();
     }
 
     @After

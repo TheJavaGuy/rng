@@ -1,5 +1,8 @@
 package org.thejavaguy.prng.generators;
 
+/**
+ * @author Ivan Milosavljevic (TheJavaGuy)
+ */
 public final class MersenneTwister implements PRNG {
     private static final int N = 624;
     private static final int M = 397;
@@ -67,14 +70,14 @@ public final class MersenneTwister implements PRNG {
         if (upperLimit <= 0) {
             throw new IllegalArgumentException("upperLimit must be positive, yet it is " + upperLimit);
         }
-        return (int) Math.floor((upperLimit + 1) * nextDouble());
+        return (int) Math.floor(((double) upperLimit + 1) * nextDouble());
     }
 
     @Override
     public int nextInt(int lowerLimit, int upperLimit) {
-        if (lowerLimit > upperLimit) {
+        if (lowerLimit >= upperLimit) {
             throw new IllegalArgumentException(String.format(
-                    "lowerLimit must be greater than upperLimit, yet values are: lowerLimit = %d, upperLimit = %d",
+                    "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
                     lowerLimit, upperLimit));
         }
         return lowerLimit + nextInt(upperLimit - lowerLimit);

@@ -12,7 +12,7 @@ public class MersenneTwisterTest {
 
     @Before
     public void setUp() throws Exception {
-        sut = new MersenneTwister(645564);
+        sut = new MersenneTwister();
     }
 
     @After
