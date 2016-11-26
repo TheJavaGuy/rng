@@ -5,7 +5,7 @@
     <groupId>org.thejavaguy</groupId>
     <artifactId>rng</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.7-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
     <name>Random number generators</name>
     <description>Implementation of several (pseudo) random number generators which have better characteristics then Java's built in generator</description>
     <url>https://github.com/TheJavaGuy/rng</url>
