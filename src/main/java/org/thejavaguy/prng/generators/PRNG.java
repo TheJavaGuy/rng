@@ -1,5 +1,7 @@
 package org.thejavaguy.prng.generators;
 
+import org.thejavaguy.prng.generators.util.IntRange;
+
 public interface PRNG {
     /**
      * Returns pseudo-random integer in range [Integer.MIN_VALUE, Integer.MAX_VALUE]
@@ -47,15 +49,20 @@ public interface PRNG {
             }
             //if branch handles negative integer overflow case, else branch handles normal case
             if (lowerLimit < 0 && upperLimit >= 0 && (upperLimit - lowerLimit) < 0) {
+                IntRange range = new IntRange(lowerLimit, upperLimit);
                 for (;;) {
                     int ret = origin.nextInt();
-                    if (ret >= lowerLimit && ret <= upperLimit) {
+                    if (range.contains(ret)) {
                         return ret;
                     }
                 }
             } else {
                 return lowerLimit + nextInt(upperLimit - lowerLimit);
             }
+        }
+        
+        public int nextInt(IntRange range) {
+            return nextInt(range.lowerLimit(), range.upperLimit());
         }
 
         /**
