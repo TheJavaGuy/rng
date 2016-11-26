@@ -58,7 +58,18 @@ public final class XorshiftPlus implements PRNG {
                     "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
                     lowerLimit, upperLimit));
         }
-        return lowerLimit + nextInt(upperLimit - lowerLimit);
+        if (lowerLimit < 0 && upperLimit >= 0 && (upperLimit - lowerLimit) < 0) {
+            int ret = 0;
+            for (;;) {
+                ret = nextInt();
+                if (ret >= lowerLimit && ret <= upperLimit) {
+                    break;
+                }
+            }
+            return ret;
+        } else {
+            return lowerLimit + nextInt(upperLimit - lowerLimit);
+        }
     }
 
     @Override
@@ -79,15 +90,5 @@ public final class XorshiftPlus implements PRNG {
     @Override
     public char nextChar() {
         return (char) nextInt(0, 65535);
-    }
-
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
-        XorshiftPlus app = new XorshiftPlus();
-        for (int i = 0; i < 10; ++i) {
-            System.out.println(app.nextInt(-1, Integer.MAX_VALUE));
-        }
     }
 }

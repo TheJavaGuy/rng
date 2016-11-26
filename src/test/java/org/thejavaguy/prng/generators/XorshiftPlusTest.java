@@ -79,4 +79,73 @@ public class XorshiftPlusTest {
         assertEquals(256, results.size());
     }
 
+    @Test
+    public void nextInt_WithNegativeEdgeLimits_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(Integer.MIN_VALUE, 0);
+            assertTrue(actual >= Integer.MIN_VALUE);
+            assertTrue(actual <= 0);
+        }
+    }
+
+    @Test
+    public void nextInt_WithPositiveEdgeLimits_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(0, Integer.MAX_VALUE);
+            assertTrue(actual >= 0);
+            assertTrue(actual <= Integer.MAX_VALUE);
+        }
+    }
+
+    @Test
+    public void nextInt_WithEdgeLimits_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
+            assertTrue(actual >= Integer.MIN_VALUE);
+            assertTrue(actual <= Integer.MAX_VALUE);
+        }
+    }
+
+    @Test
+    public void nextInt_WithWorstNegativeEdgeLimits_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(Integer.MIN_VALUE, Integer.MIN_VALUE + 1);
+            assertTrue(actual >= Integer.MIN_VALUE);
+            assertTrue(actual <= Integer.MIN_VALUE + 1);
+        }
+    }
+
+    @Test
+    public void nextInt_WithWorstPositiveEdgeLimits_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(Integer.MAX_VALUE - 1, Integer.MAX_VALUE);
+            assertTrue(actual >= Integer.MAX_VALUE - 1);
+            assertTrue(actual <= Integer.MAX_VALUE);
+        }
+    }
+
+    @Test
+    public void nextInt_WithPossibleNegativeOverflow_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(Integer.MIN_VALUE, 1);
+            assertTrue(actual >= Integer.MIN_VALUE);
+            assertTrue(actual <= 1);
+        }
+    }
+
+    @Test
+    public void nextInt_WithPossiblePositiveOverflow_IsAlwaysWithinLimits() {
+        int reps = 10_000_000;
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(-1, Integer.MAX_VALUE);
+            assertTrue(actual >= -1);
+            assertTrue(actual <= Integer.MAX_VALUE);
+        }
+    }
 }
