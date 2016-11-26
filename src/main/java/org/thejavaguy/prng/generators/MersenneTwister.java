@@ -36,11 +36,6 @@ public final class MersenneTwister implements PRNG {
     }
 
     @Override
-    public double nextDouble() {
-        return Math.abs(nextInt() / ((double) Integer.MAX_VALUE + 2));
-    }
-
-    @Override
     public int nextInt() {
         int ret = 0;
         if (mti >= N) {
@@ -63,43 +58,5 @@ public final class MersenneTwister implements PRNG {
         ret ^= (ret << 15) & TEMPERING_MASK_C;
         ret ^= (ret >>> 18);
         return ret;
-    }
-
-    @Override
-    public int nextInt(int upperLimit) {
-        if (upperLimit <= 0) {
-            throw new IllegalArgumentException("upperLimit must be positive, yet it is " + upperLimit);
-        }
-        return (int) Math.floor(((double) upperLimit + 1) * nextDouble());
-    }
-
-    @Override
-    public int nextInt(int lowerLimit, int upperLimit) {
-        if (lowerLimit >= upperLimit) {
-            throw new IllegalArgumentException(String.format(
-                    "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
-                    lowerLimit, upperLimit));
-        }
-        return lowerLimit + nextInt(upperLimit - lowerLimit);
-    }
-
-    @Override
-    public boolean nextBoolean() {
-        return nextInt(1) == 1;
-    }
-
-    @Override
-    public byte nextByte() {
-        return (byte) nextInt(-128, 127);
-    }
-
-    @Override
-    public short nextShort() {
-        return (short) nextInt(-32768, 32767);
-    }
-
-    @Override
-    public char nextChar() {
-        return (char) nextInt(0, 65535);
     }
 }

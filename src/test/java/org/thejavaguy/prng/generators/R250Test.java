@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class R250Test {
-    private R250 sut;
+    private R250.Smart sut;
 
     @Before
     public void setUp() throws Exception {
-        sut = new R250();
+        sut = new R250.Smart(new R250());
     }
 
     @After

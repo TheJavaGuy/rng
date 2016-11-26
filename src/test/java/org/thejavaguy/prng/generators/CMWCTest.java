@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class CMWCTest {
-    private CMWC sut;
+    private CMWC.Smart sut;
 
     @Before
     public void setUp() throws Exception {
-        sut = new CMWC();
+        sut = new CMWC.Smart(new CMWC());
     }
 
     @After

@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MersenneTwisterTest {
-    private MersenneTwister sut;
+    private MersenneTwister.Smart sut;
 
     @Before
     public void setUp() throws Exception {
-        sut = new MersenneTwister();
+        sut = new MersenneTwister.Smart(new MersenneTwister());
     }
 
     @After

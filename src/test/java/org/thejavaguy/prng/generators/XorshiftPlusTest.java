@@ -8,11 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class XorshiftPlusTest {
-    private XorshiftPlus sut;
+    private XorshiftPlus.Smart sut;
 
     @Before
     public void setUp() throws Exception {
-        sut = new XorshiftPlus();
+        sut = new XorshiftPlus.Smart(new XorshiftPlus());
     }
 
     @After
