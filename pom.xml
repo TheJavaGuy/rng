@@ -36,16 +36,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.resourcesDirectory>src/main/resources</project.resourcesDirectory>
-        <project.externalResourcesDirectory>src/main/resources-ext</project.externalResourcesDirectory>
         <project.libDirectory>lib</project.libDirectory>
         <mainClass>org.thejavaguy.App</mainClass>
         <junit.version>4.12</junit.version>
         <jmock.version>2.8.2</jmock.version>
-        <guava.version>19.0</guava.version>
-        <jcommander.version>1.48</jcommander.version>
-        <slf4j.version>1.7.13</slf4j.version>
-        <log4j.version>1.2.17</log4j.version>
     </properties>
 
     <dependencies>
@@ -60,36 +54,6 @@
             <artifactId>jmock-junit4</artifactId>
             <version>${jmock.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.beust</groupId>
-            <artifactId>jcommander</artifactId>
-            <version>${jcommander.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
         </dependency>
     </dependencies>
 
@@ -164,7 +128,7 @@
                                 <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             </manifest>
                             <manifestEntries>
-                                <Min-Java-Version>1.8.0</Min-Java-Version>
+                                <Min-Java-Version>1.7.0</Min-Java-Version>
                             </manifestEntries>
                         </archive>
                     </configuration>

@@ -1,1 +1,0 @@
-This dir should contain all resources which will be distributed alongside your JAR (and not within it).
