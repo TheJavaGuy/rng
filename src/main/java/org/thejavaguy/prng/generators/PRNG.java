@@ -24,6 +24,7 @@ public interface PRNG {
          * Returns pseudo-random integer in range [0, upperLimit]
          *
          * @param upperLimit Upper limit of range
+         * @throws IllegalArgumentException if the upperLimit is not positive
          */
         public int nextInt(int upperLimit) {
             if (upperLimit <= 0) {
@@ -36,6 +37,7 @@ public interface PRNG {
          * Returns pseudo-random integer in range [lowerLimit, upperLimit]
          * @param lowerLimit Lower limit of range
          * @param upperLimit Upper limit of range
+         * @throws IllegalArgumentException if the lowerLimit is greater than or equal to the upperLimit
          */
         public int nextInt(int lowerLimit, int upperLimit) {
             if (lowerLimit >= upperLimit) {
@@ -43,15 +45,14 @@ public interface PRNG {
                         "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
                         lowerLimit, upperLimit));
             }
+            //if branch handles negative integer overflow case, else branch handles normal case
             if (lowerLimit < 0 && upperLimit >= 0 && (upperLimit - lowerLimit) < 0) {
-                int ret = 0;
                 for (;;) {
-                    ret = origin.nextInt();
+                    int ret = origin.nextInt();
                     if (ret >= lowerLimit && ret <= upperLimit) {
-                        break;
+                        return ret;
                     }
                 }
-                return ret;
             } else {
                 return lowerLimit + nextInt(upperLimit - lowerLimit);
             }
