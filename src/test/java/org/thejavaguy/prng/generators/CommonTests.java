@@ -42,7 +42,7 @@ public abstract class CommonTests {
         IntRange range = new IntRange(0, 10);
         Set<Integer> results = new TreeSet<>();
         for (int i = 0; i < reps; ++i) {
-            int actual = sut.nextInt(10);
+            int actual = sut.nextInt(range);
             results.add(actual);
             assertTrue(range.contains(actual));
         }
@@ -54,7 +54,7 @@ public abstract class CommonTests {
         int reps = 10_000_000;
         IntRange range = new IntRange(0, 1);
         for (int i = 0; i < reps; ++i) {
-            int actual = sut.nextInt(1);
+            int actual = sut.nextInt(range);
             assertTrue(range.contains(actual));
         }
     }

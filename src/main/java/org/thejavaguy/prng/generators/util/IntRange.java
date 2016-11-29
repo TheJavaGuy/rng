@@ -35,7 +35,11 @@ public final class IntRange {
     }
     
     public boolean overlaps(IntRange other) {
-        return this.contains(other.lowerLimit) || this.contains(other.upperLimit);
+        return other.contains(lowerLimit) || other.contains(upperLimit) || this.includes(other);
+    }
+    
+    public boolean includes(IntRange other) {
+        return contains(other.lowerLimit) && contains(other.upperLimit);
     }
 
     @Override
@@ -47,5 +51,35 @@ public final class IntRange {
         builder.append(upperLimit);
         builder.append("]");
         return builder.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + lowerLimit;
+        result = prime * result + upperLimit;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        IntRange other = (IntRange) obj;
+        if (lowerLimit != other.lowerLimit) {
+            return false;
+        }
+        if (upperLimit != other.upperLimit) {
+            return false;
+        }
+        return true;
     }
 }

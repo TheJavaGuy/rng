@@ -22,26 +22,17 @@ public interface PRNG {
             return Math.abs(origin.nextInt() / ((double) Integer.MAX_VALUE + 2));
         }
 
-        /**
-         * Returns pseudo-random integer in range [0, upperLimit]
-         *
-         * @param upperLimit Upper limit of range
-         * @throws IllegalArgumentException if the upperLimit is not positive
-         */
-        public int nextInt(int upperLimit) {
-            if (upperLimit <= 0) {
-                throw new IllegalArgumentException("upperLimit must be positive, yet it is " + upperLimit);
-            }
-            return (int) Math.floor(((double) upperLimit + 1) * nextDouble());
+        public int nextInt(IntRange range) {
+            return nextInt(range.lowerLimit(), range.upperLimit());
         }
-
+        
         /**
          * Returns pseudo-random integer in range [lowerLimit, upperLimit]
          * @param lowerLimit Lower limit of range
          * @param upperLimit Upper limit of range
          * @throws IllegalArgumentException if the lowerLimit is greater than or equal to the upperLimit
          */
-        public int nextInt(int lowerLimit, int upperLimit) {
+        private int nextInt(int lowerLimit, int upperLimit) {
             if (lowerLimit >= upperLimit) {
                 throw new IllegalArgumentException(String.format(
                         "upperLimit must be greater than lowerLimit, yet values are: lowerLimit = %d, upperLimit = %d",
@@ -61,8 +52,17 @@ public interface PRNG {
             }
         }
         
-        public int nextInt(IntRange range) {
-            return nextInt(range.lowerLimit(), range.upperLimit());
+        /**
+         * Returns pseudo-random integer in range [0, upperLimit]
+         *
+         * @param upperLimit Upper limit of range
+         * @throws IllegalArgumentException if the upperLimit is not positive
+         */
+        private int nextInt(int upperLimit) {
+            if (upperLimit <= 0) {
+                throw new IllegalArgumentException("upperLimit must be positive, yet it is " + upperLimit);
+            }
+            return (int) Math.floor(((double) upperLimit + 1) * nextDouble());
         }
 
         /**
