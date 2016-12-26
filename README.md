@@ -22,7 +22,7 @@ The easiest and recommended way to install rng is via your favorite build tool (
 compile group: 'org.thejavaguy', name: 'rng', version: '0.1.0'
 ```
 If you want to build the jar files (with code, javadoc and sources) yourself, you can do that easily:
-```
+```bash
 $ git clone git@github.com:TheJavaGuy/rng.git
 $ cd rng/
 $ mvn clean package -Prng
@@ -31,26 +31,26 @@ $ ls -alF target | grep rng
 # 4. Usage examples
 Using any of the generators is super easy. You just need to create an object and then request random number in the range you need.
 ## 4.1 Instantiating a generator
-```
+```java
 PRNG.Smart generator = new MersenneTwister.Smart(new MersenneTwister());
 ```
 In a similar way you would instantiate an object for some other generator, e.g.
-```
+```java
 PRNG.Smart generator = new XorshiftPlus.Smart(new XorshiftPlus());
 ```
 ## 4.2 Generating an integer in given range
-```
+```java
 IntRange range = new IntRange(1, 6);
 int roll = generator.nextInt(range);
 ```
 ```IntRange``` class is constant (immutable) so you can share it's instances freely.
 ## 4.3 Generating a double in range [0,1)
-```
+```java
 double number = generator.nextDouble();
 ```
 ## 4.4 Generating various primitive values
 It's super easy to generate ```boolean```, ```byte```, ```short``` and ```char``` values too:
-```
+```java
 boolean coinToss = generator.nextBoolean();
 byte colorIndex = generator.nextByte();
 short tetrisScore = generator.nextShort();
