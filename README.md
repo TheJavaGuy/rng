@@ -29,7 +29,34 @@ $ mvn clean package -Prng
 $ ls -alF target | grep rng
 ```
 # 4. Usage examples
-TBD
+Using any of the generators is super easy. You just need to create an object and then request random number in the range you need.
+## 4.1 Instantiating a generator
+```
+PRNG.Smart generator = new MersenneTwister.Smart(new MersenneTwister());
+```
+In a similar way you would instantiate an object for some other generator, e.g.
+```
+PRNG.Smart generator = new XorshiftPlus.Smart(new XorshiftPlus());
+```
+## 4.2 Generating an integer in given range
+```
+IntRange range = new IntRange(1, 6);
+int roll = generator.nextInt(range);
+```
+```IntRange``` class is constant (immutable) so you can share it's instances freely.
+## 4.3 Generating a double in range [0,1)
+```
+double number = generator.nextDouble();
+```
+## 4.4 Generating various primitive values
+It's super easy to generate ```boolean```, ```byte```, ```short``` and ```char``` values too:
+```
+boolean coinToss = generator.nextBoolean();
+byte colorIndex = generator.nextByte();
+short tetrisScore = generator.nextShort();
+char letter = generator.nextChar();
+```
+
 # 5. How to contribute
 If you spot an error or you think you can add some feature to rng just fork the project and make a pull request.
 # 6. License
