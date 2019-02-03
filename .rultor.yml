@@ -7,4 +7,4 @@ release:
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     ls -alF /home/r
-    mvn -X clean deploy -Prng --settings /home/r/settings.xml
+    mvn -X clean deploy -Pjcabi --settings /home/r/settings.xml -P rng
