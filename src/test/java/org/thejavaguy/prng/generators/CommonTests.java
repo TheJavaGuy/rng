@@ -2,7 +2,10 @@ package org.thejavaguy.prng.generators;
 
 import static org.junit.Assert.*;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -47,6 +50,32 @@ public abstract class CommonTests {
             assertTrue(range.contains(actual));
         }
         assertEquals(range.size(), results.size());
+    }
+
+    @Test
+    public void nextInt_WithUpperLimit_HasCorrectAverage() {
+        int reps = 1_000_000;
+        IntRange range = new IntRange(1, 10);
+        double avg = 0.0d;
+        long sum = 0L;
+        for (int i = 0; i < reps; ++i) {
+            sum += sut.nextInt(range);
+        }
+        avg = (double)sum / reps;
+        assertEquals(5.50, avg, 0.01);
+    }
+
+    @Test
+    public void nextInt_WithUpperLimit_HasCorrectMedian() {
+        int reps = 601;
+        IntRange range = new IntRange(1, 5);
+        List<Integer> results = new LinkedList<>();
+        for (int i = 0; i < reps; ++i) {
+            int actual = sut.nextInt(range);
+            results.add(actual);
+        }
+        Collections.sort(results);
+        assertEquals(3, ((Integer)results.get(reps/2)).intValue());
     }
 
     @Test
