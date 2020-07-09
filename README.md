@@ -15,11 +15,11 @@ The easiest and recommended way to install rng is via your favorite build tool (
 <dependency>
     <groupId>org.thejavaguy</groupId>
     <artifactId>rng</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 ```
-compile group: 'org.thejavaguy', name: 'rng', version: '0.1.0'
+compile group: 'org.thejavaguy', name: 'rng', version: '0.2.0'
 ```
 If you want to build the jar files (with code, javadoc and sources) yourself, you can do that easily:
 ```bash
@@ -80,3 +80,4 @@ If you have a question or issue with rng itself please use [Issues][rngissues] l
 [gpl]: https://www.gnu.org/licenses/gpl-3.0.html
 [rngissues]: https://github.com/TheJavaGuy/rng/issues
 [twitterhandle]: https://twitter.com/_The_Java_Guy_
+
